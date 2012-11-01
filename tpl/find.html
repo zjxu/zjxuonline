@@ -1,0 +1,32 @@
+{include file="require_header.html" titlepre=$tagname  gallery=yes}
+
+
+
+<div id="article">
+{if is_array($twos)}
+<h1 style="margin:15px 0px"><a href="{spUrl c=two a=type type=$type flag=1}"  {if $flag==1} class="current" {/if}>{$dtype}</a>
+<a href="{spUrl c=two a=type type=$type flag=2}"  {if $flag==2} class="current" {/if}>{$dothertype}</a>
+<a href="javascript:void(0)" onclick="addMytag('{$tagname}','{spUrl c=blog a=addMytag}')" id="flowTag">发布二手信息</a>
+</h1>
+{/if}
+<div id="feedArea">
+{include file="require_find.html" data=$losts  limits=4}
+</div>
+
+
+
+
+<div class="nav">{$pager}</div>
+
+
+
+</div>
+
+
+
+
+<div id="aside">
+   {include file="require_sider.html" in_tagindex=true}
+</div>
+
+{include file="require_footer.html"}

@@ -1,0 +1,46 @@
+<style>
+.td_width_12 {
+    width: 12%;
+}
+.td_width_20{
+    width: 20%;
+}
+.td_width_16 {
+    width: 16%;
+}
+.td_width_28 {
+    width: 28%;
+}
+.td_width_8 {
+    width: 8%;
+}
+</style>
+<div class="sort">
+						<strong>选择类型查看</strong>
+						<select onchange="document.location='index.php?c=outservice&a=find&type='+(this.options[this.selectedIndex].value)" id="objSel" name="object_style" class="sort_select">
+								<option value="all">选择类型</option>
+								<option value="all">所有类型</option>
+                                <option value="书籍资料">书籍资料</option>
+								<option value="衣物饰品">衣物饰品</option>
+								<option value="交通工具">交通工具</option>
+								<option value="随身物品">随身物品</option>
+								<option value="电子数码">电子数码</option>
+								<option value="卡类证件">卡类证件</option>
+								<option value="其他物品">其他物品</option>
+						</select>
+					</div>
+<table class="table table-striped">
+<tbody>
+<tr>
+<td class="td_width_12">类型</span></td>
+<td class="td_width_20">物品名称</span></td>
+<td class="td_width_16">地点</span></td>
+<td class="td_width_16">发布时间</span></td>
+<td class="td_width_28">详情描述</span></td>
+<td class="td_width_8"></td>
+</tr>
+{foreach from=$data item=d}
+<tr> <td>{$d.type}</td><td><a target="_blank" title="点击查看详情" href="index.php?c=outservice&a=dfind&id={$d.id}">{$d.title}</a></td><td>{$d.path}</td><td>{ybtime time=$d.pubtime} </td><td>{$d.context}</td><td><a target="_blank" title="点击查看详情" href="index.php?c=outservice&a=dfind&id={$d.id}">【详情】</a></td></tr>
+{/foreach}
+</tbody>
+</table>

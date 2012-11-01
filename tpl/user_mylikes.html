@@ -1,0 +1,30 @@
+{include file="require_header.html" gallery=yes}
+
+<div id="article">
+<h1>我的收藏&nbsp;&nbsp;&nbsp;<a href="{spUrl c=user a=mylikes}"{$curr_my_waimai}>外卖</a><a href="{spUrl c=user a=mypost lost=yes}"{$curr_my_lost}>二手</a><a href="{spUrl c=user a=mylikes work=yes}"{$curr_my_work}>兼职</a><a href="{spUrl c=user a=mylikes new=yes}"{$curr_my_new}>资讯</a><a href="{spUrl c=user a=mypost find=yes}"{$curr_my_find}>周边</a></h1>
+  
+  
+    
+  
+  {if $posttype=='work'}
+   {include file="require_works.html" data=$data limits=all}
+  {/if}
+    {if $posttype=='new'}
+   {include file="require_news.html" data=$data limits=all}
+  {/if}
+    {if $posttype=='lost'}
+   {include file="require_losts.html" data=$losts limits=all}
+  {/if}
+  <div class="nav">{$pager}</div>    
+</div>
+
+
+
+
+          
+          
+<div id="aside">
+   {include file="require_sider.html"}
+</div>
+
+{include file="require_footer.html"}

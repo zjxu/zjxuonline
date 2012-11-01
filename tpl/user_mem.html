@@ -1,0 +1,91 @@
+<link  href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css"> 
+
+
+
+{include file="require_header.html"}
+<link href="{$url}/tpl/image/css/mem.css" rel="stylesheet" type="text/css">
+
+{if $me == 0}
+<div id="article">
+ <h1><a href="{spUrl c=mem a=mymem}"{$curr_mefor}>大家的备忘录</a> <a href="{spUrl c=mem a=mymem me=true}"{$curr_forme}>我的备忘录</a></h1>
+ <ul>
+{foreach from=$mem item=d}
+
+ 
+    <li>
+    {if  $d.url!=""}
+<a href="{$d.url}" target="_blank">
+ {else}
+ <a href="#">
+ {/if}
+           {if  $d.url!=""}
+<h2>{$d.title}</h2>
+{/if}
+        <p>{$d.content}</p>
+
+           {if  $d.phone!=""}
+        <p>电话：{$d.phone}</p>
+{/if}
+      </a>
+    </li>
+
+   {/foreach} 
+   </ul>
+    <div class="nav">{$pager}</div> 
+</div>
+
+
+
+
+{else}
+
+
+<div id="article">
+  <h1><a href="{spUrl c=mem a=mymem}"{$curr_mefor}>大家的备忘录</a> <a href="{spUrl c=mem a=mymem me=true}"{$curr_forme}>我的备忘录</a></h1>
+
+
+ <ul>
+{foreach from=$mem item=d}
+
+ 
+    <li>
+    {if  $d.url!=""}
+<a href="{$d.url}" target="_blank">
+ {else}
+ <a href="#">
+ {/if}
+           {if  $d.url!=""}
+<h2>{$d.title}</h2>
+{/if}
+        <p>{$d.content}</p>
+
+           {if  $d.phone!=""}
+        <p>电话：{$d.phone}</p>
+{/if}
+      </a>
+    </li>
+
+   {/foreach} 
+   </ul>
+
+
+
+
+    <div class="nav">{$pager}</div> 
+</div>
+
+
+
+
+{/if}
+
+
+
+
+          
+          
+<div id="aside">
+   {include file="require_sider.html"}
+</div>
+
+{include file="require_footer.html"}

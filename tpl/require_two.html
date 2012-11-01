@@ -1,0 +1,102 @@
+{foreach from=$data item=d}
+<div class="box" id="blog_{$d.id}">
+     <div class="top">
+     	<a href="{goUserHome  uid=$d.user_id}" title="{$d.uname}" target="_blank"> 
+     	<img src="{avatar uid=$d.user_id size=middle}" alt="{$d.uname}" class="face"/></a><span class="jiao"></span>
+     </div>
+     <div class="header">
+       <cite> <a href="{goUserHome domain=$d.domain uid=$d.user_id}" target="_blank">{$d.uname}</a> {ybtime time=$d.pubdate} </cite>
+   
+     </div>
+     
+     <div id="feedText_{$d.id}" class="content">
+     {$d.title}
+         
+         {if $d.context!=''&&$d.sphone!='null'}{$d.context}<br><br>{/if}
+       
+              {if count($d.images) >0}
+           <div class="highslide-gallery" style="margin-top: 13px">
+           {foreach from=$d.images item=i}
+           <a onclick="return hs.expand(this)" 
+           href="{$i.burl}" class="highslide">
+           <img class="feedimg" alt="" src="{$i.burl}"></a>
+          
+           {/foreach}
+           
+           
+           <br><br>
+           </div>
+           
+           {else}
+           
+           {/if}
+           
+           
+             价格:{$d.price}&nbsp;&nbsp; &nbsp;  新旧程度:{$d.new}
+     </div>
+     
+
+     <div class="footer">
+
+     <div class="tag">  联系人:{$d.linkman}&nbsp;&nbsp;   {if $d.sphone!=''&&$d.sphone!='null'} 短号 :{$d.sphone}&nbsp;&nbsp; {/if}电话 :{$d.phone} </div>
+
+   
+        
+      <div class="menu">
+
+
+      			
+               {if islogin()}
+               	
+                 	{if $d.user_id!= $smarty.session.uid}
+       		<a href="javascript:void(0)" onclick="indexPostTab('comment','{$d.id}','{spUrl c=blog a=getReplay}')" id="comment_btn_{$d.id}"> 给他留言</a>
+       	 {/if}
+       	 
+                	
+                       {if $d.coll == 1} 
+                       <a href="javascript:void(0)" onclick="collectadd('{$d.id}','{spUrl c=two a=add}')"><span id='coll_{$d.id}'>取消收藏</span></a>
+                     {else if $d.coll == 0}
+                    <a href="javascript:void(0)" onclick="collectadd('{$d.id}','{spUrl c=two a=add}')"><span id='coll_{$d.id}'>收藏</span></a> 
+                       {/if}
+            
+                   
+     
+                
+                
+                   {if $d.user_id == $smarty.session.uid || $smarty.session.admin == 1}
+
+                    <span class="delrep"><a href="javascript:void(0)" onclick="deltwo('{$d.id}','{spUrl c=two a=del id=$d.id}')" title="删除">&nbsp;&nbsp;&nbsp;</a></span>
+                   {/if}
+               {/if}
+   
+      </div>
+        <div class="clear"></div>
+     </div>
+
+ 
+                    <div style="display:none" id="comment_{$d.id}">
+                      <div class="comment">
+                      {if islogin()}
+                          <textarea id="replyInput_{$d.id}"></textarea>
+                          <input type="hidden" id="replyTo_{$d.id}" />
+                          <div class="submit">
+                           <em class="green" id="replyInput_lengthinf_{$d.id}"></em>
+                           <input type="button" value="留言" onclick="sendtwomem('{$d.id}','{spUrl c=user a=postpm}','{$d.user_id}')" class="btn" />
+                       </div>
+                          {/if}
+                       
+                      </div>
+                    </div>
+                    
+                     <div id="feeds_{$d.id}"  style="display:none">
+                      <div class="comment">
+
+
+                        <ul class="feedList" id="feedList_{$d.id}">
+                        </ul>
+                      </div>
+                    </div>
+     
+   
+    </div>
+{/foreach}

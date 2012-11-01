@@ -1,0 +1,125 @@
+{include file="require_header.html" titlepre=$tagname  gallery=yes}
+
+
+<link rel="stylesheet" type="text/css" media="screen" href="{$url}/tpl/image/css/work.css" class="cssfx"/>
+<div id="article" >
+
+<div id="feedArea">
+{foreach from=$work item=d}
+<div class="box" id="blog_{$d.id}">
+
+     <div class="header">
+       <cite> ({$d.workspath}) {$d.title}&nbsp;&nbsp;&nbsp;&nbsp;  {ybtime time=$d.pubdate} </cite>
+   
+     </div>
+     
+     <div id="feedText_{$d.id}" class="content">
+    
+    <table >
+    <tr height="30px"> <td>薪资水平: &nbsp;&nbsp;{$d.workmoney}&nbsp;&nbsp;</td><td>招聘人数:&nbsp;&nbsp;{$d.worknum}</td></tr>
+ <tr height="30px"><td>性别要求: &nbsp;&nbsp;{$d.workgender}&nbsp;&nbsp;</td><td>工作时间:&nbsp;&nbsp;{$d.worktime}</td></tr>
+ <tr height="30px"><td>工作地点:&nbsp;&nbsp;{$d.workpath} </td></tr>
+    </table>
+
+         {if $d.content!=''}{$d.content}{/if}
+       
+              {if count($d.images) >0}
+           <div class="highslide-gallery" style="margin-top: 13px">
+           {foreach from=$d.images item=i}
+           <a onclick="return hs.expand(this)" 
+           href="{$i.burl}" class="highslide">
+           <img class="feedimg" alt="" src="{$i.burl}"></a>
+          
+           {/foreach}
+           
+           
+           <br><br>
+           </div>
+           
+           {else}
+           
+           {/if}
+           
+           
+             
+     </div>
+     
+
+     <div class="footer">
+
+     <div class="tag">  联系人:{$d.linkman}&nbsp;&nbsp;   {if $d.sphone!=''&&$d.sphone!='null'} 短号 :{$d.sphone}&nbsp;&nbsp; {/if}电话 :{$d.phone} </div>
+
+   
+        
+      <div class="menu">
+
+
+      			
+               {if islogin()}
+               	
+     
+       	 
+                	
+                       {if $d.coll == 1} 
+                       <a href="javascript:void(0)" onclick="collectadd('{$d.id}','{spUrl c=outservice a=add}')"><span id='coll_{$d.id}'>取消收藏</span></a>
+                     {else if $d.coll == 0}
+                    <a href="javascript:void(0)" onclick="collectadd('{$d.id}','{spUrl c=outservice  a=add}')"><span id='coll_{$d.id}'>收藏</span></a> 
+                       {/if}
+            
+                   
+     
+                
+                
+              
+               {/if}
+   
+      </div>
+        <div class="clear"></div>
+     </div>
+
+ 
+                    <div style="display:none" id="comment_{$d.id}">
+                      <div class="comment">
+                      {if islogin()}
+                          <textarea id="replyInput_{$d.id}"></textarea>
+                          <input type="hidden" id="replyTo_{$d.id}" />
+                          <div class="submit">
+                           <em class="green" id="replyInput_lengthinf_{$d.id}"></em>
+                           <input type="button" value="留言" onclick="sendtwomem('{$d.id}','{spUrl c=user a=postpm}','{$d.user_id}')" class="btn" />
+                       </div>
+                          {/if}
+                       
+                      </div>
+                    </div>
+                    
+                     <div id="feeds_{$d.id}"  style="display:none">
+                      <div class="comment">
+
+
+                        <ul class="feedList" id="feedList_{$d.id}">
+                        </ul>
+                      </div>
+                    </div>
+     
+   
+    </div>
+{/foreach}
+</div>
+
+
+
+
+<div class="nav">{$pager}</div>
+
+
+
+</div>
+
+
+
+
+<div id="aside">
+   {include file="require_sider.html" in_tagindex=true}
+</div>
+
+{include file="require_footer.html"}

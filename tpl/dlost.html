@@ -1,0 +1,152 @@
+{include file="require_header.html" titlepre=$tagname  gallery=yes}
+
+<style>
+.h2 {
+    border-bottom: 1px dashed #ACACAC;
+    color: #4C4C4C;
+    font: 20px "Microsoft Yahei";
+    padding-bottom: 10px;
+    text-shadow: 0 1px 2px rgba(65, 65, 65, 0.7);
+}
+publish_form {
+    padding: 20px 0 0 20px;
+}
+
+ul.publish_form li {
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+ul {
+    list-style: none outside none;
+}
+.object_detail {
+    margin-left: 1em;
+    width: 715px;
+}
+</style>
+<div id="article">
+<div style="margin-bottom: 20px">
+<h2 id="h2" class="h2">失物信息详情</h2>
+</div>
+
+<div id="feedArea">
+
+<div class="box" id="blog_{$d.id}">
+     <div class="top">
+     	{if $d.user_id!=0}<a href="{goUserHome  uid=$d.user_id}" title="{$d.uname}" target="_blank"> 
+     	<img src="{avatar uid=$d.user_id size=m}" alt="{$d.uname}" class="face"/></a>{else}<img src="{avatar uid=$d.user_id size=middle}" alt="{$d.uname}" class="face"/>{/if}<span class="jiao"></span>
+     </div>
+     
+     <div class="header">
+       <cite> {if $d.user_id!=0}<a href="{goUserHome domain=$d.domain uid=$d.user_id}" target="_blank">{$d.uname}</a>{else}{$d.uname}{/if} {ybtime time=$d.pubtime} </cite>
+   
+     </div>
+     
+     <div id="feedText_{$d.id}" class="content">
+  
+       
+              {if count($d.images) >0}
+           <div class="highslide-gallery" style="margin-top: 13px">
+           {foreach from=$d.images item=i}
+           <a onclick="return hs.expand(this)" 
+           href="{$i.burl}" class="highslide">
+           <img class="feedimg" alt="" src="{$i.burl}"></a>
+          
+           {/foreach}
+           
+           
+           <br><br>
+           </div>
+           
+           {else}
+           
+           {/if}
+           
+           
+             <ul class="publish_form">
+						<li>
+							<span>物品名称:</span><span class="object_detail">{$d.title}</span>
+						</li>
+						<li>
+							<span>物品类型:</span><span class="object_detail">{$d.type}</span>
+						</li>
+						<li>
+							<span id="label_place">丢失地点:</span><span class="object_detail">{$d.path}</span>
+						</li>
+						<li class="clearfix">
+							<span id="label_time">丢失时间:</span><span class="object_detail">{$d.losttime}</span>
+						</li>
+				
+						<li>
+							<span>详情描述:</span><span class="object_detail" id="object_detail">{$d.context}</span>
+						</li>
+						
+					</ul>
+     </div>
+     
+
+     <div class="footer">
+
+     <div class="tag">  联系人:{$d.linkman}&nbsp;&nbsp;   {if $d.sphone!=''&&$d.sphone!='null'} 短号 :{$d.sphone}&nbsp;&nbsp; {/if}电话 :{$d.phone} {if $d.qq!=''&&$d.qq!='null'}qq:{$d.qq}{/if}</div>
+
+   
+        
+      <div class="menu">
+
+
+      			
+               {if islogin()}
+               	
+                 	{if $d.user_id!= $smarty.session.uid&&$d.user_id!=0}
+       		<a href="javascript:void(0)" onclick="indexPostTab('comment','{$d.id}','{spUrl c=blog a=getReplay}')" id="comment_btn_{$d.id}"> 给他留言</a>
+       	 {/if}
+       	 
+                	
+               
+            
+                   
+     
+                
+                
+                   {if $d.user_id == $smarty.session.uid || $smarty.session.admin == 1}
+
+                    <span class="delrep"><a href="javascript:void(0)" onclick="deltwo('{$d.id}','{spUrl c=outservice a=del id=$d.id}')" title="删除">&nbsp;&nbsp;&nbsp;</a></span>
+                   {/if}
+               {/if}
+   
+      </div>
+        <div class="clear"></div>
+     </div>
+
+ 
+                    <div style="display:none" id="comment_{$d.id}">
+                      <div class="comment">
+                      {if islogin()}
+                          <textarea id="replyInput_{$d.id}"></textarea>
+                          <input type="hidden" id="replyTo_{$d.id}" />
+                          <div class="submit">
+                           <em class="green" id="replyInput_lengthinf_{$d.id}"></em>
+                           <input type="button" value="留言" onclick="sendtwomem('{$d.id}','{spUrl c=user a=postpm}','{$d.user_id}')" class="btn" />
+                       </div>
+                          {/if}
+                       
+                      </div>
+                    </div>
+                    
+                     <div id="feeds_{$d.id}"  style="display:none">
+                      <div class="comment">
+
+
+                        <ul class="feedList" id="feedList_{$d.id}">
+                        </ul>
+                      </div>
+                    </div>
+     
+   
+    </div>
+    </div>
+    </div>
+    <div id="aside">
+   {include file="require_sider.html" in_tagindex=true}
+</div>
+    {include file="require_footer.html"}

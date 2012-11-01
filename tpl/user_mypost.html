@@ -1,0 +1,30 @@
+{include file="require_header.html" gallery=yes}
+
+<div id="article">
+<h1>我的发布&nbsp;&nbsp;&nbsp;<a href="{spUrl c=user a=mypost}"{$curr_my_index}>二手</a><a href="{spUrl c=user a=mypost lost=yes}"{$curr_my_lost}>寻物</a><a href="{spUrl c=user a=mypost find=yes}"{$curr_my_find}>招领</a></h1>
+  
+  
+    
+  
+  {if $posttype=='two'}
+   {include file="require_two.html" data=$two limits=all}
+  {/if}
+    {if $posttype=='find'}
+   {include file="require_finds.html" data=$finds limits=all}
+  {/if}
+    {if $posttype=='lost'}
+   {include file="require_losts.html" data=$losts limits=all}
+  {/if}
+  <div class="nav">{$pager}</div>    
+</div>
+
+
+
+
+          
+          
+<div id="aside">
+   {include file="require_sider.html"}
+</div>
+
+{include file="require_footer.html"}

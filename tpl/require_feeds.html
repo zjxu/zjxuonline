@@ -1,0 +1,84 @@
+{foreach from=$data item=d}
+<div class="box" id="blog_{$d.id}">
+     <div class="top">
+     	<a href="{goUserHome  uid=$d.user_id}" title="{$d.uname}" target="_blank"> 
+     	<img src="{avatar uid=$d.user_id size=middle}" alt="{$d.uname}" class="face"/></a><span class="jiao"></span>
+     </div>
+     <div class="header">
+       <cite> <a href="{goUserHome domain=$d.domain uid=$d.user_id}" target="_blank">{$d.uname}</a> {ybtime time=$d.pubdate} </cite>
+   
+     </div>
+     
+     <div id="feedText_{$d.id}" class="content">
+     {$d.body}
+         
+              {if $d.bimg != ''}
+           <div class="highslide-gallery" style="margin-top: 13px">
+           <a onclick="return hs.expand(this)" 
+           href="{$d.bimg}" class="highslide">
+           <img class="feedimg" alt="" src="{$d.bimg}"></a>
+          
+           </div>
+           {/if}
+     </div>
+     
+
+     <div class="footer">
+     {if $d.appclient!=''}
+     <div class="tag">用[{$d.appclient}]发布</div>
+     {/if}
+        
+      <div class="menu">
+
+	<a href="javascript:void(0)" onclick="indexPostTab('comment','{$d.id}','{spUrl c=blog a=getReplay}')" id="comment_btn_{$d.id}">
+      				 评论<em>{if {$d.commentcount} != 0}({$d.commentcount}){/if}</em></a>
+               {if islogin()}
+               	
+                
+       
+                	{if $d.user_id!= $smarty.session.uid}
+                       {if $d.followid != ''} <a href="javascript:void(0)" onclick="follows('{$d.user_id}','{spUrl c=blog a=follows}')">已关注</a> {else}
+                       <a href="javascript:void(0)" onclick="follows('{$d.user_id}','{spUrl c=blog a=follows}')">关注</a>
+                       {/if}
+                   {/if}
+                   
+     
+                
+                
+                   {if $d.user_id == $smarty.session.uid || $smarty.session.admin == 1}
+
+                    <span class="delrep"><a href="javascript:void(0)" onclick="delblogs('{$d.id}','{spUrl c=add a=del id=$d.id}')" title="删除">&nbsp;&nbsp;&nbsp;</a></span>
+                   {/if}
+               {/if}
+   
+      </div>
+        <div class="clear"></div>
+     </div>
+
+ 
+                    <div style="display:none" id="comment_{$d.id}">
+                      <div class="comment">
+                      {if islogin()}
+                          <textarea id="replyInput_{$d.id}"></textarea>
+                          <input type="hidden" id="replyTo_{$d.id}" />
+                          <div class="submit">
+                           <em class="green" id="replyInput_lengthinf_{$d.id}"></em>
+                           <input type="button" value="提交评论" onclick="sendReplay('{$d.id}','{spUrl c=blog a=replay}')" class="btn" />
+                       </div>
+                          {/if}
+                        <ul class="commentList" id="commentList_{$d.id}"></ul>
+                      </div>
+                    </div>
+                    
+                     <div id="feeds_{$d.id}"  style="display:none">
+                      <div class="comment">
+
+
+                        <ul class="feedList" id="feedList_{$d.id}">
+                        </ul>
+                      </div>
+                    </div>
+     
+   
+    </div>
+{/foreach}

@@ -1,0 +1,35 @@
+  <div id="menu">
+     <div><img src="{avatar uid=$uid size=b}" alt="{$username}" /></div>
+
+     
+     {if $isfollow == 1}
+    	 <a href="javascript:void(0)" onclick="follows('{$uid}','{spUrl c=blog a=follows}')">您已关注,取消</a>
+     {elseif $isfollow == 0}
+     <a href="javascript:void(0)" onclick="follows('{$uid}','{spUrl c=blog a=follows}')">关注作者</a>
+     {/if}
+     
+     {if $smarty.session.uid != $user.uid}   <a href="javascript:void(0)" onClick="sendpm({$uid})">发送留言</a> {/if}
+      {if $user.latestonline} <a href="javascript:void(0)">最近登录: {ybtime time=$user.latestonline}</a>{/if}
+       <a href="javascript:void(0)">来自  {$user.school}{$user.college}{$user.grade}</a>
+    </div>
+    
+ 	<div class="title">{$username}的关注({$follow.count})</div>
+    
+    
+    <div class="follow">
+    {foreach from=$follow.fs item=da}
+       <a href="{goUserHome  uid=$da.userid}" title="{$da.name}"> 
+       <img src="{avatar uid=$da.userid size=m}" alt="{$da.tome.name}" style="max-width:40px" /></a>
+    {/foreach}
+    </div>
+    
+     	<div class="title">{$username}的粉丝({$myLook.count})</div>
+    
+    
+    <div class="follow">
+    {foreach from=$myLook.fs item=da}
+       <a href="{goUserHome  uid=$da.userid}" title="{$da.name}"> 
+       <img src="{avatar uid=$da.userid size=m}" alt="{$da.tome.name}" style="max-width:40px" /></a>
+    {/foreach}
+    </div>
+    

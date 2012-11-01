@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+#article .box {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 1px 1px 12px #999999;
+    color: #444444;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    padding: 15px;
+    position: relative;
+    width: 620px;
+}
+#article .box .footer .tag {
+    background: url("../ico_favtags.png") no-repeat scroll 5px center transparent;
+    float: left;
+    overflow: hidden;
+    text-align: left;
+    text-indent: 2em;
+    width: 600px;
+}

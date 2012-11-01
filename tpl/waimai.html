@@ -1,0 +1,140 @@
+{include file="require_header.html" titlepre=$tagname  gallery=yes}
+
+  <meta name="viewport" content="width=device-width" />
+
+
+  
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="{$url}/tpl/stylesheets/foundation.css">
+  <link rel="stylesheet" href="{$url}/tpl/stylesheets/app.css">
+  <link rel="stylesheet" type="text/css" href="{$url}/tpl/css/style_common.css" />
+  <link rel="stylesheet" type="text/css" href="{$url}/tpl/css/style5.css" />
+  <script src="{$url}/tpl/javascripts/modernizr.foundation.js"></script>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+
+  
+
+  <!-- /Top Menu -->
+  <!-- End Header and Nav -->
+  
+  
+  
+  <!-- Second Band (Image Left with Text) -->
+  
+  <div class="shop">
+    <div class="row shop-tuijian">
+       <ul id="shop-ul">
+          <li><img src="{$rewaimai.simg}" style="width: 100px;height: 100px"/></li>
+          <li id="shop-ul-tj">
+            <h5>为您推荐<a href="../3DRestaurantMenu/index.html" target="_blank">{$rewaimai.title}</a> </h5>
+            <p>短号: {$rewaimai.sphone} <br>电话:{$rewaimai.phone}</p>
+          </li>
+          <li id="s-recommend">
+            <dl >
+              <dt id="s-recommend-food">可能感兴趣的食物</dt>
+              <dd>
+                <ul id="s-recommend-img" class="clearfix">
+                  {foreach from=$retakeout item=rd}
+                     <li><img src="{$rd.img}" style="width: 100px;height: 75px" /><br><span style="font-size: 10px">{$rd.title}({$rd.money})</span></li>
+                     
+                 {/foreach}    
+               
+ 
+                </ul>
+              </dd>
+              <dd id="s-change">换一批</dd>
+            </dl>
+          </li>
+       </ul> 
+    </div>
+  </div>
+  
+  <!-- 购物流程引导-->
+  <div class="row">
+    <div class="twelve columns">
+      <div id="slider">
+        <img src="http://getimg.in/940x200&text=[img 1]" />
+        <img src="http://getimg.in/940x200&text=[img 2]" />
+        <img src="http://getimg.in/940x200&text=[img 3]" />
+        <img src="http://getimg.in/940x200&text=[img 4]" />
+      </div>
+      
+      <hr />
+    </div>
+  </div>
+  <!-- Third Band (Image Right with Text) -->
+  
+  <div class="row">
+  {foreach from=$waimai item=d}
+        <div class="view view-fifth" style="width: 300px;height: 200px">
+            <img src="{$d.img}" width="300px"  height="200px"  style="width: 300px;height: 200px"/>
+            <div class="mask">
+                <h2>{$d.title} -- {$d.dtitle} </h2>
+                <p>外卖时间:{$d.time}</p>
+     
+                <a href="#" class="info">电话:{$d.showphone}</a>
+            </div>
+        </div> 
+    {/foreach}    
+        
+
+  </div>
+  
+  
+
+
+  <!-- Included JS Files (Uncompressed) -->
+  <!--
+  
+  <script src="{$url}/tpl/javascripts/jquery.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.foundation.mediaQueryToggle.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.foundation.forms.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.foundation.reveal.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.foundation.orbit.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.foundation.navigation.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.foundation.buttons.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.foundation.tabs.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.foundation.tooltips.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.foundation.accordion.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.placeholder.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.foundation.alerts.js"></script>
+  
+  <script src="{$url}/tpl/javascripts/jquery.foundation.topbar.js"></script>
+  
+  -->
+  
+  <!-- Included JS Files (Compressed) -->
+  <script src="{$url}/tpl/javascripts/jquery.js"></script>
+  <script src="{$url}/tpl/javascripts/foundation.min.js"></script>
+  
+  <!-- Initialize JS Plugins -->
+  <script src="{$url}/tpl/javascripts/app.js"></script>
+
+  <script type="text/javascript">
+     $(window).load(function() {
+         $('#slider').orbit();
+     });
+  </script>
+  <br><br><br>
+{include file="require_footer.html"}

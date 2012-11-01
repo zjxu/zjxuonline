@@ -1,0 +1,97 @@
+{include file="require_header.html"}
+
+
+{if $getfollow == 1}
+<div id="article">
+ <h1><a href="{spUrl c=user a=myfollow}"{$curr_mefor}>我关注的</a> <a href="{spUrl c=user a=myfollow follow=me}"{$curr_forme}>关注我的</a></h1>    
+{foreach from=$follow item=d}
+  <div class="box" id="myfollow_{$d.meto.uid}">
+     <div class="top">
+     	<a href="{goUserHome uid=$d.userid}" title="{$d.name}" target="_blank"> 
+     	<img src="{avatar uid=$d.userid size=m}" alt="{$d.name}" class="face"/></a><span class="jiao"></span>
+     </div>
+     <div class="header">
+       <cite> <a href="{goUserHome  uid=$d.userid}" target="_blank">{$d.name}</a></cite>
+        {$d.from}
+     </div>
+     
+
+     
+
+     <div class="footer">
+     
+      <div class="menu">
+         {ybtime time=$d.time}      
+        {if $d.linker == 1} 互相关注{else}<a href="javascript:void(0)" onclick="follows('{$d.userid}','{spUrl c=blog a=follows}')" id="follow_{$d.userid}">加关注</a>{/if}     
+      </div>
+        <div class="clear"></div>
+     </div>
+
+     
+   
+    </div>
+   {foreachelse}
+     <div class="box" id="myfollow_{$d.userid}">
+    	 <div class="content">  您还没有关注或还没有人关注您 </div>
+    </div>
+   {/foreach} 
+    <div class="nav">{$pager}</div> 
+</div>
+
+
+
+
+{else}
+
+
+<div id="article">
+ <h1><a href="{spUrl c=user a=myfollow}"{$curr_mefor}>我关注的</a> <a href="{spUrl c=user a=myfollow follow=me}"{$curr_forme}>关注我的</a></h1>    
+{foreach from=$follow item=d}
+  <div class="box" id="myfollow_{$d.tome.uid}">
+     <div class="top">
+
+     	       	<a href="{goUserHome uid=$d.userid}" title="{$d.name}" target="_blank"> 
+     	<img src="{avatar uid=$d.userid  size=m}" alt="{$d.name}" class="face"/></a><span class="jiao"></span>
+     </div>
+     <div class="header">
+       <cite> <a href="{goUserHome uid=$d.userid}" target="_blank">{$d.name}</a></cite>
+       {$d.from}
+     </div>
+     
+
+     
+
+     <div class="footer">
+      <div class="menu">
+        {ybtime time=$d.time}   {if $d.linker == 1}已互相关注{/if}   
+         <a href="javascript:void(0)" onclick="follows('{$d.userid}','{spUrl c=blog a=follows}')">  取消关注</a> 
+      </div>
+        <div class="clear"></div>
+     </div>
+
+     
+   
+    </div>
+   {foreachelse}
+     <div class="box" id="myfollow_{$d.tome.uid}">
+    	 <div class="content">  您还没有关注或还没有人关注您 </div>
+    </div>
+   {/foreach} 
+    <div class="nav">{$pager}</div> 
+</div>
+
+
+
+
+{/if}
+
+
+
+
+          
+          
+<div id="aside">
+   {include file="require_sider.html"}
+</div>
+
+{include file="require_footer.html"}
